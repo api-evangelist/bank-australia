@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: bank-australia-lookup-banking-products.md
+  name: Look up Bank Australia banking products
+  api: cds_banking.json (Consumer Data Standards Banking)
+  operations: [listBankingProducts, getBankingProductDetail]

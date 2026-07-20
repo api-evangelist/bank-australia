@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from the CDS Banking OpenAPI 3.0.3 responses for
+  listBankingProducts + getBankingProductDetail
+  (consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json)
+format: cds-error-list-v2
+envelope: '{ "errors": [ { "code": "urn:au-cds:error:cds-all:...", "title": "...", "detail": "...", "meta": {} } ] }'
+note: >-
+  The CDR Product Reference Data endpoints return the standardized Consumer Data
+  Standards error list. Codes below are the ones the shared contract marks as
+  MUST-support for the two PRD operations.
+problems:
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/Invalid
+  title: Invalid Field
+  operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/Missing
+  title: Missing Required Field
+  operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Header/Missing
+  title: Missing Required Header
+  remediation: Send the mandatory `x-v` version header.
+  operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Header/InvalidVersion
+  title: Invalid Version
+  remediation: '`x-v` must be a positive integer.'
+  operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/InvalidDateTime
+  title: Invalid Date
+  operations: [listBankingProducts]
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/InvalidPageSize
+  title: Invalid Page Size
+  operations: [listBankingProducts]
+- status: 404
+  code: urn:au-cds:error:cds-all:Resource/Unavailable
+  title: Unavailable Resource
+  operations: [getBankingProductDetail]
+- status: 404
+  code: urn:au-cds:error:cds-all:Resource/Invalid
+  title: Invalid Resource
+  remediation: Supply a productId that exists for this data holder.
+  operations: [getBankingProductDetail]
+- status: 406
+  code: urn:au-cds:error:cds-all:Header/UnsupportedVersion
+  title: Unsupported Version
+  remediation: Request a supported `x-v`; check the served version echoed in the `x-v` response header.
+  operations: [listBankingProducts, getBankingProductDetail]
+- status: 422
+  code: urn:au-cds:error:cds-all:Field/InvalidPage
+  title: Invalid Page
+  remediation: Request a page within meta.totalPages.
+  operations: [listBankingProducts]

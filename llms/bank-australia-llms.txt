@@ -1,0 +1,29 @@
+# Bank Australia
+
+> Bank Australia is a customer-owned (mutual) bank and certified B Corporation, APRA-regulated as an authorised deposit-taking institution (ADI). Under Australia's Consumer Data Right (CDR / Open Banking) it operates as a data holder, exposing a public, unauthenticated Product Reference Data (PRD) API that conforms to the Data Standards Body (DSB) Consumer Data Standards.
+
+## APIs
+
+- [Bank Australia CDR Product Reference Data API](https://www.bankaust.com.au/support/open-banking/developer/): Public, unauthenticated product/fee/rate/eligibility data. Base https://public.cdr.bankaust.com.au/cds-au/v1 — requires the mandatory `x-v` version header.
+  - GET /banking/products (listBankingProducts)
+  - GET /banking/products/{productId} (getBankingProductDetail)
+
+## Specs
+
+- [CDS Banking OpenAPI 3.0.3](https://consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json): the shared DSB Consumer Data Standards Banking contract (not bank-proprietary).
+- [API Reference (Get Products)](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products)
+
+## Artifacts
+
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/authentication/bank-australia-authentication.yml): PRD is public/no-auth; Consumer Data Sharing uses CDR OAuth2/OIDC/FAPI + mTLS.
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/conventions/bank-australia-conventions.yml): x-v versioning, page/page-size pagination, x-fapi-interaction-id tracing, CDS error envelope.
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/errors/bank-australia-problem-types.yml): CDS error-list-v2 codes for the PRD operations.
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/conformance/bank-australia-conformance.yml): CDR Consumer Data Standards, FAPI, OAuth2/OIDC.
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/lifecycle/bank-australia-lifecycle.yml): x-v version train + status page.
+
+## Docs
+
+- [Open Banking developer](https://www.bankaust.com.au/support/open-banking/developer/)
+- [Open Banking overview](https://www.bankaust.com.au/support/open-banking)
+- [Status](https://www.bankaust.com.au/status)
+- [Support](https://www.bankaust.com.au/support)

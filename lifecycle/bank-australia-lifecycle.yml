@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.bankaust.com.au/status +
+  Consumer Data Standards versioning (x-v / x-min-v) +
+  live probe (x-v: 3 served for banking/products)
+versioning:
+  scheme: header-endpoint-version
+  header: x-v
+  min_header: x-min-v
+  observed_current: '3'
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+  description: >-
+    Per-endpoint versioning via the `x-v` request header (integer). The bank
+    follows the DSB Consumer Data Standards version train; the served version is
+    echoed in the `x-v` response header (observed 3 for GET /banking/products).
+deprecation:
+  policy: cds-obsolescence
+  sunset_header: false
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+  description: >-
+    Endpoint-version obsolescence is governed by the Consumer Data Standards:
+    older `x-v` versions are announced, deprecated, and eventually retired
+    through the DSB standards maintenance process, and unsupported versions
+    return HTTP 406 (urn:au-cds:error:cds-all:Header/UnsupportedVersion).
+status_page: https://www.bankaust.com.au/status
+service_alerts: https://www.bankaust.com.au/support/alerts
+sla:
+  url: null
+  note: No public API SLA/uptime target is published for the PRD API.
+deprecated_operations: []

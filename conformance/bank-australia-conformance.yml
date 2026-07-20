@@ -1,0 +1,46 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  Consumer Data Standards (Banking) + live probe of
+  https://public.cdr.bankaust.com.au/cds-au/v1/banking/products
+standards:
+- id: cdr-consumer-data-standards
+  conforms: true
+  evidence: >-
+    Serves the DSB Consumer Data Standards Banking API at the CDS public base
+    /cds-au/v1; mandatory x-v version header honored; CDS error/pagination model
+    in use. Bank Australia is a registered CDR data holder (APRA-regulated ADI).
+- id: cdr-banking-product-reference-data
+  conforms: true
+  evidence: >-
+    Implements GET /banking/products (listBankingProducts) and
+    GET /banking/products/{productId} (getBankingProductDetail) per the shared
+    cds_banking OpenAPI 3.0.3 contract.
+- id: fapi-1.0-advanced
+  conforms: partial
+  evidence: >-
+    FAPI interaction id (x-fapi-interaction-id) exposed on PRD responses; the
+    full FAPI Advanced security profile applies to the authenticated Consumer
+    Data Sharing surface, not the public PRD endpoints.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    CDR Consumer Data Sharing uses OAuth2 authorization-code (out of band of the
+    public PRD API). See authentication/bank-australia-authentication.yml.
+- id: oidc
+  conforms: true
+  evidence: OpenID Connect is part of the CDR security profile for data sharing.
+- id: mutual-tls
+  conforms: true
+  evidence: CDR requires sender-constrained (mTLS) tokens for data sharing.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the CDS ResponseErrorListV2 envelope (urn:au-cds:error:* codes),
+    not application/problem+json.
+- id: openapi-3.0
+  conforms: true
+  evidence: cds_banking contract is OpenAPI 3.0.3.
+- id: pagination-page-number
+  conforms: true
+  evidence: page / page-size params with meta.totalRecords + links.

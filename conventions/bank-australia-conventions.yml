@@ -1,0 +1,62 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  Consumer Data Standards (Banking API) + live response headers from
+  https://public.cdr.bankaust.com.au/cds-au/v1/banking/products
+summary: >-
+  Cross-cutting request/response semantics for Bank Australia's CDR Product
+  Reference Data API. These conventions are inherited from the Data Standards
+  Body (DSB) Consumer Data Standards, not bank-proprietary, and were confirmed
+  against live responses (x-v: 3, x-fapi-interaction-id present).
+authentication:
+  style: none (public PRD); see authentication/bank-australia-authentication.yml
+versioning:
+  style: header
+  header: x-v
+  description: >-
+    Endpoint versioning via the mandatory request header `x-v` (integer). The
+    server echoes the served version in the `x-v` response header. Clients MAY
+    send `x-min-v` to request the lowest acceptable version. Missing/invalid
+    version yields 400; an unsupported requested version yields 406.
+  observed_current_version: '3'
+  cross_ref: lifecycle/bank-australia-lifecycle.yml
+idempotency:
+  supported: false
+  reason: >-
+    The Product Reference Data API is read-only (GET only), so no idempotency
+    key contract applies. No Idempotency-Key header is defined or required.
+pagination:
+  style: page-number
+  request_params: [page, page-size]
+  defaults: {page: 1, page-size: 25, max_page_size: 1000}
+  response_fields:
+    meta: [totalRecords, totalPages]
+    links: [self, first, prev, next, last]
+  description: >-
+    List endpoints (GET /banking/products) return `meta.totalRecords`,
+    `meta.totalPages`, and a `links` object with `self`/`first`/`prev`/`next`/
+    `last`. Invalid `page-size` yields 400; a page beyond the range yields 422.
+request_tracing:
+  header: x-fapi-interaction-id
+  description: >-
+    An optional client-supplied `x-fapi-interaction-id` (FAPI) is echoed on the
+    response for end-to-end correlation; the server generates one when absent.
+    Confirmed present on live responses.
+cors:
+  access_control_allow_origin: '*'
+  access_control_expose_headers: [x-v, x-fapi-interaction-id]
+error_envelope:
+  format: cds-error-list-v2
+  shape: '{ "errors": [ { "code": "urn:au-cds:error:cds-all:...", "title": "...", "detail": "...", "meta": {} } ] }'
+  cross_ref: errors/bank-australia-problem-types.yml
+rate_limiting:
+  signaling: none_documented
+  note: >-
+    No rate-limit response headers were observed on the public PRD endpoints and
+    none are documented; CDR traffic-thresholds are governed at the ecosystem
+    level by the Data Standards, not surfaced per-response.
+security_headers_observed:
+  - strict-transport-security
+  - x-content-type-options
+  - x-frame-options
+  - x-xss-protection

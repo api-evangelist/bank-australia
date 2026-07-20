@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.bankaust.com.au/support/open-banking/developer/ +
+  Consumer Data Standards (Consumer Data Right) security profile
+summary:
+  types: [none, oauth2, openIdConnect]
+  api_key_in: []
+  oauth2_flows: [authorizationCode]
+  note: >-
+    Two distinct surfaces. The public Product Reference Data (PRD) API requires
+    NO authentication and NO API key - only the mandatory CDS `x-v` version
+    header. The authenticated Consumer Data Sharing surface (account and
+    transaction data for consenting customers) is governed by the CDR security
+    profile: OAuth2 authorization-code flow with OpenID Connect, mutual-TLS
+    sender-constrained tokens, PKCE, and the Financial-grade API (FAPI 1.0
+    Advanced) profile, brokered through the ACCC CDR Register rather than a
+    bank-proprietary authorization server.
+schemes:
+- name: public-no-auth
+  type: none
+  applies_to: Product Reference Data API (GET /banking/products, /banking/products/{productId})
+  description: >-
+    Unauthenticated public endpoints. No credential is issued or required; the
+    only mandatory request header is `x-v` (CDS API version).
+  sources: [apis.yml]
+- name: cdr-oauth2-fapi
+  type: oauth2
+  scheme: authorizationCode
+  fapi_profile: FAPI 1.0 Advanced
+  mtls: true
+  pkce: true
+  applies_to: Consumer Data Sharing (accredited data recipients, consenting customers)
+  description: >-
+    OAuth2 authorization-code + OIDC with mutual-TLS-bound tokens under the CDR
+    security profile. Accreditation and dynamic client registration are handled
+    via the CDR Register; not exercised by the public PRD API captured here.
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#security-profile
+  sources: [Consumer Data Standards security profile]

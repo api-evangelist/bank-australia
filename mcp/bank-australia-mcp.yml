@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: >-
+  Derived from the CDS Banking OpenAPI 3.0.3 operations Bank Australia exposes;
+  no official Bank Australia MCP server is published.
+server:
+  name: bank-australia-cdr-prd
+  transport: http
+  url: null
+  note: >-
+    Candidate tool surface only. Because the Product Reference Data API is public
+    and unauthenticated, these two read tools can be wrapped as an MCP server
+    with no credential handling.
+tools:
+- name: list_banking_products
+  description: >-
+    List Bank Australia's publicly available banking products (deposit, credit
+    card, lending) with fees, rates, and eligibility. Supports product-category
+    filtering and page/page-size pagination.
+  source_operation: cds_banking.json#listBankingProducts
+  http: GET https://public.cdr.bankaust.com.au/cds-au/v1/banking/products
+  required_headers: [x-v]
+- name: get_banking_product_detail
+  description: Retrieve the full detail for one product by productId.
+  source_operation: cds_banking.json#getBankingProductDetail
+  http: GET https://public.cdr.bankaust.com.au/cds-au/v1/banking/products/{productId}
+  required_headers: [x-v]

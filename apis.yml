@@ -56,6 +56,8 @@ apis:
     header. The contract is the shared DSB Consumer Data Standards Banking OpenAPI
     (OpenAPI 3.0.3), not a bank-proprietary specification.
 common:
+- type: DomainSecurity
+  url: security/bank-australia-domain-security.yml
 - type: Website
   url: https://www.bankaust.com.au/
 - type: DeveloperPortal
@@ -72,6 +74,28 @@ common:
   url: https://www.bankaust.com.au/support/disclosures
 - type: Support
   url: https://www.bankaust.com.au/support
+- type: StatusPage
+  url: https://www.bankaust.com.au/status
+- type: Authentication
+  url: authentication/bank-australia-authentication.yml
+- type: Conventions
+  url: conventions/bank-australia-conventions.yml
+- type: Conformance
+  url: conformance/bank-australia-conformance.yml
+- type: ErrorCatalog
+  url: errors/bank-australia-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/bank-australia-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/bank-australia-lifecycle.yml
+- type: DomainSecurity
+  url: security/bank-australia-domain-security.yml
+- type: MCPServer
+  url: mcp/bank-australia-mcp.yml
+- type: LLMsTxt
+  url: llms/bank-australia-llms.txt
+- type: AgentSkill
+  url: skills/bank-australia-lookup-banking-products.md
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

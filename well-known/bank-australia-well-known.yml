@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of /.well-known/* on the API and website hosts
+note: >-
+  No /.well-known/ discovery documents are published. Bank Australia's Consumer
+  Data Right endpoints are the public Product Reference Data (PRD) surface only;
+  the authenticated Consumer Data Sharing infrastructure (OIDC/OAuth2 discovery)
+  is fronted by the CDR register / ACCC infrastructure, not by a bank-hosted
+  /.well-known/openid-configuration. Absence recorded as valid data.
+hosts:
+- host: https://public.cdr.bankaust.com.au
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.bankaust.com.au
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
