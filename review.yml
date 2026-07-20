@@ -1,0 +1,88 @@
+aid: bank-australia
+name: Bank Australia
+review:
+  question: Does Bank Australia expose a live, public Consumer Data Right (CDR) Product Reference Data API, and is its contract bank-proprietary or the shared DSB standard?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  specProvenanceNote: |
+    The Product Reference Data (PRD) surface is NOT a bank-proprietary API. It
+    conforms to the shared Data Standards Body (DSB) Consumer Data Standards
+    Banking OpenAPI (OpenAPI 3.0.3, title "CDR Banking API"), published at
+    https://consumerdatastandardsaustralia.github.io/standards/. Every Australian
+    ADI implements the same normative contract; only the public base host differs
+    per data holder. No bank-authored OpenAPI/Swagger was found for download, so
+    the standard DSB spec is referenced rather than a proprietary one.
+findings:
+  summary: |
+    Bank Australia (customer-owned mutual ADI, APRA-regulated, B Corp) participates
+    in Australia's Consumer Data Right as a data holder. It exposes the mandated
+    public, unauthenticated Product Reference Data (PRD) API at the CDS public base
+    https://public.cdr.bankaust.com.au/cds-au/v1 (endpoints GET /banking/products
+    and GET /banking/products/{productId}). The host is live and responding: an
+    unauthenticated GET without the mandatory CDS `x-v` version header returned
+    HTTP 400 (missing-required-header rejection, the standard CDS behaviour),
+    confirming the endpoint exists and is served, versus a dead host which fails DNS
+    resolution. A strict HTTP 200 + data.products JSON body could not be captured in
+    this bootstrap environment because the fetch tooling cannot send the mandatory
+    `x-v` request header. Consumer (non-public) CDR data — transaction, account, and
+    lending data — is available only to accredited data recipients (ADRs) under the
+    CDR's OAuth2 / OpenID Connect (FAPI-profiled) consent and ADR accreditation
+    model, exposed to eligible customers through the Bank Australia app and internet
+    banking rather than as an open developer API.
+  developerPortal: |
+    Bank Australia publishes an open-banking / CDR support page at
+    https://www.bankaust.com.au/support/open-banking with a developer resources
+    section at https://www.bankaust.com.au/support/open-banking/developer/. This is
+    a compliance/informational surface, not a full self-service developer portal
+    with keys or an interactive console (as expected for a data holder whose
+    consumer APIs are gated behind CDR accreditation). No bank GitHub organisation
+    or downloadable bank-specific API specification was found.
+  authModel:
+    publicPrd: none (unauthenticated public Product Reference Data)
+    consumerData: OAuth2 / OpenID Connect, CDR FAPI security profile, accredited data recipient (ADR) model under ACCC/OAIC governance
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://public.cdr.bankaust.com.au/cds-au/v1
+      documented: true
+      note: Public CDR Product Reference Data base. GET /banking/products and GET /banking/products/{productId}. Mandatory x-v version header.
+  endpointsConfirmed:
+    - GET https://public.cdr.bankaust.com.au/cds-au/v1/banking/products
+    - GET https://public.cdr.bankaust.com.au/cds-au/v1/banking/products/{productId}
+  probe:
+    url: https://public.cdr.bankaust.com.au/cds-au/v1/banking/products
+    httpStatus: 400
+    interpretation: |
+      HTTP 400 returned for a request lacking the mandatory CDS `x-v` header. This
+      is the Consumer Data Standards missing-header rejection and confirms a live,
+      responding endpoint. A true 200 with a data.products array could not be
+      obtained because the fetch tooling cannot set request headers; the host,
+      however, resolves and serves TLS + an HTTP response (unlike bankaustralia.com.au
+      candidate hosts, which return no DNS record).
+sources:
+  - url: https://www.bankaust.com.au/support/open-banking
+    type: Documentation
+    note: Bank Australia open banking / Consumer Data Right page (HTTP 200); confirms data-holder posture and links developer resources.
+  - url: https://www.bankaust.com.au/support/open-banking/developer/
+    type: DeveloperPortal
+    note: Developer resources section linked from the open-banking page.
+  - url: https://public.cdr.bankaust.com.au/cds-au/v1/banking/products
+    type: APIReference
+    note: Live public CDR PRD endpoint. HTTP 400 without mandatory x-v header (missing-header rejection), confirming a responding endpoint.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: Documentation
+    note: DSB Consumer Data Standards; source of the shared CDR Banking OpenAPI 3.0.3 that the PRD conforms to.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json
+    type: OpenAPI
+    note: Canonical DSB CDS Banking OpenAPI 3.0.3 (title "CDR Banking API"); shared standard, not bank-proprietary.
+  - url: https://github.com/LukePrior/Australian-Open-Banking-Data-Database
+    type: Reference
+    note: Community index of Australian ADI CDR public base URLs; lists Bank Australia at https://public.cdr.bankaust.com.au/cds-au/v1.
+actions:
+  openapiHarvested: false
+  reason: |
+    No bank-proprietary OpenAPI/Swagger is published for download; the PRD conforms
+    to the shared DSB CDS Banking OpenAPI, which is referenced by URL rather than
+    copied into openapi/ (it is a standard, not a Bank Australia artifact, and the
+    bootstrap environment could not stream the full document verbatim to disk).
