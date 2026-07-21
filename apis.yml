@@ -25,7 +25,7 @@ tags:
 - Australia
 - Mutual Bank
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
 - aid: bank-australia:bank-australia-cdr-product-reference-data-api
@@ -44,7 +44,7 @@ apis:
     type: Documentation
   - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
     type: APIReference
-  - url: https://consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json
+  - url: openapi/bank-australia-cds-banking-openapi.json
     type: OpenAPI
   description: >-
     Public, unauthenticated Product Reference Data (PRD) endpoints under the
@@ -53,8 +53,129 @@ apis:
     https://public.cdr.bankaust.com.au/cds-au/v1, returning machine-readable
     product, fee, rate, and eligibility data for Bank Australia's deposit, credit
     card, and lending products. Requests require the mandatory CDS `x-v` version
-    header. The contract is the shared DSB Consumer Data Standards Banking OpenAPI
-    (OpenAPI 3.0.3), not a bank-proprietary specification.
+    header. Probed 2026-07-21: GET /banking/products returned HTTP 200. The
+    contract is the shared DSB Consumer Data Standards Banking OpenAPI (v1.36.0,
+    OpenAPI 3.0.3) harvested verbatim from the Data Standards Body, not a
+    bank-proprietary specification.
+- aid: bank-australia:bank-australia-cdr-accounts-balances-api
+  name: Bank Australia CDR Accounts & Balances API
+  tags:
+  - CDR
+  - Open Banking
+  - Accounts
+  - Balances
+  - Banking
+  - Consumer Authorized
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankaust.com.au/support/open-banking/developer/
+  baseURL: https://resource.cdr.bankaust.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.bankaust.com.au/support/open-banking/developer/
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+    type: APIReference
+  - url: openapi/bank-australia-cds-banking-openapi.json
+    type: OpenAPI
+  description: >-
+    Consumer-authorized account and balance endpoints under the Consumer Data
+    Right, served from Bank Australia's resource host
+    https://resource.cdr.bankaust.com.au/cds-au/v1. Covers GET /banking/accounts
+    (list of authorized accounts), GET /banking/accounts/balances (bulk
+    balances), GET /banking/accounts/{accountId}/balance (single balance) and GET
+    /banking/accounts/{accountId} (account detail). Access requires an ACCC-
+    accredited data recipient (ADR), an eligible customer's consent, and the CDR
+    security profile (OIDC/FAPI, mTLS); the resource host rejects unauthenticated
+    connections (probed 2026-07-21: connection blocked, no unauthenticated
+    response). The contract is the shared DSB Consumer Data Standards Banking
+    OpenAPI (v1.36.0), not a bank-proprietary specification.
+- aid: bank-australia:bank-australia-cdr-transactions-api
+  name: Bank Australia CDR Transactions API
+  tags:
+  - CDR
+  - Open Banking
+  - Transactions
+  - Banking
+  - Consumer Authorized
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankaust.com.au/support/open-banking/developer/
+  baseURL: https://resource.cdr.bankaust.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.bankaust.com.au/support/open-banking/developer/
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+    type: APIReference
+  - url: openapi/bank-australia-cds-banking-openapi.json
+    type: OpenAPI
+  description: >-
+    Consumer-authorized transaction endpoints under the Consumer Data Right,
+    served from https://resource.cdr.bankaust.com.au/cds-au/v1. Covers GET
+    /banking/accounts/{accountId}/transactions (transactions for an account, with
+    date and amount filters) and GET
+    /banking/accounts/{accountId}/transactions/{transactionId} (transaction
+    detail). Access requires an ACCC-accredited data recipient, the customer's
+    consent, and the CDR security profile (OIDC/FAPI, mTLS); the resource host
+    rejects unauthenticated connections (probed 2026-07-21). The contract is the
+    shared DSB Consumer Data Standards Banking OpenAPI (v1.36.0), not a
+    bank-proprietary specification.
+- aid: bank-australia:bank-australia-cdr-direct-debits-scheduled-payments-api
+  name: Bank Australia CDR Direct Debits & Scheduled Payments API
+  tags:
+  - CDR
+  - Open Banking
+  - Direct Debits
+  - Scheduled Payments
+  - Banking
+  - Consumer Authorized
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankaust.com.au/support/open-banking/developer/
+  baseURL: https://resource.cdr.bankaust.com.au/cds-au/v1/banking
+  properties:
+  - url: https://www.bankaust.com.au/support/open-banking/developer/
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+    type: APIReference
+  - url: openapi/bank-australia-cds-banking-openapi.json
+    type: OpenAPI
+  description: >-
+    Consumer-authorized direct-debit and scheduled-payment endpoints under the
+    Consumer Data Right, served from
+    https://resource.cdr.bankaust.com.au/cds-au/v1. Covers GET
+    /banking/accounts/{accountId}/direct-debits and POST
+    /banking/accounts/direct-debits (bulk), GET
+    /banking/accounts/{accountId}/payments/scheduled and POST
+    /banking/payments/scheduled (bulk scheduled payments). Access requires an
+    ACCC-accredited data recipient, the customer's consent, and the CDR security
+    profile (OIDC/FAPI, mTLS); the resource host rejects unauthenticated
+    connections (probed 2026-07-21). The contract is the shared DSB Consumer Data
+    Standards Banking OpenAPI (v1.36.0), not a bank-proprietary specification.
+- aid: bank-australia:bank-australia-cdr-payees-api
+  name: Bank Australia CDR Payees API
+  tags:
+  - CDR
+  - Open Banking
+  - Payees
+  - Banking
+  - Consumer Authorized
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankaust.com.au/support/open-banking/developer/
+  baseURL: https://resource.cdr.bankaust.com.au/cds-au/v1/banking/payees
+  properties:
+  - url: https://www.bankaust.com.au/support/open-banking/developer/
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+    type: APIReference
+  - url: openapi/bank-australia-cds-banking-openapi.json
+    type: OpenAPI
+  description: >-
+    Consumer-authorized saved-payee endpoints under the Consumer Data Right,
+    served from https://resource.cdr.bankaust.com.au/cds-au/v1. Covers GET
+    /banking/payees (list of the customer's saved payees) and GET
+    /banking/payees/{payeeId} (payee detail, including domestic, biller, and
+    international payee unions). Access requires an ACCC-accredited data
+    recipient, the customer's consent, and the CDR security profile (OIDC/FAPI,
+    mTLS); the resource host rejects unauthenticated connections (probed
+    2026-07-21). The contract is the shared DSB Consumer Data Standards Banking
+    OpenAPI (v1.36.0), not a bank-proprietary specification.
 common:
 - type: DomainSecurity
   url: security/bank-australia-domain-security.yml
