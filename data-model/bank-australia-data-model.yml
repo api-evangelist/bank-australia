@@ -1,0 +1,94 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/bank-australia-cds-banking-openapi.json
+description: >-
+  Entity-relationship graph derived from the shared DSB Consumer Data Standards
+  Banking OpenAPI (v1.36.0) that Bank Australia serves. Entities and relationships
+  are read from schema $ref links and id-reference fields (accountId, payeeId,
+  transactionId, productId, scheduledPaymentId, instalmentPlanId). The public
+  Product Reference Data surface exposes only the Product entity; all other
+  entities require consumer-authorized CDR access.
+entities:
+- name: Product
+  schema: BankingProductV6 / BankingProductDetailV7
+  id_field: productId
+  surface: public-prd
+  description: >-
+    A publicly listed banking product (deposit, credit card, lending) with
+    embedded fees, rates, features, eligibility, constraints, and bundles.
+- name: Account
+  schema: BankingAccountV3 / BankingAccountDetailV5
+  id_field: accountId
+  surface: consumer-authorized
+  description: A customer's authorized account.
+- name: Balance
+  schema: BankingBalance
+  id_field: accountId
+  surface: consumer-authorized
+  description: Current/available balance, credit limit, and multi-currency purses for an account.
+- name: Transaction
+  schema: BankingTransactionV2 / BankingTransactionDetailV3
+  id_field: transactionId
+  surface: consumer-authorized
+  description: A transaction on an account, with optional extended NPP payload detail.
+- name: DirectDebit
+  schema: BankingDirectDebit
+  surface: consumer-authorized
+  description: A direct-debit authorisation against an account.
+- name: ScheduledPayment
+  schema: BankingScheduledPaymentV2
+  id_field: scheduledPaymentId
+  surface: consumer-authorized
+  description: A scheduled payment from an account to one or more payee targets, with recurrence.
+- name: InstalmentPlan
+  schema: BankingProductInstalments (payments/plans)
+  id_field: instalmentPlanId
+  surface: consumer-authorized
+  description: An instalment payment plan associated with an account.
+- name: Payee
+  schema: BankingPayeeV2 / BankingPayeeDetailV2
+  id_field: payeeId
+  surface: consumer-authorized
+  description: A saved payee (domestic, biller, or international) belonging to the customer.
+relationships:
+- from: Account
+  to: Balance
+  type: has_one
+  via: accountId
+- from: Account
+  to: Transaction
+  type: has_many
+  via: accountId
+- from: Account
+  to: DirectDebit
+  type: has_many
+  via: accountId
+- from: Account
+  to: ScheduledPayment
+  type: has_many
+  via: accountId
+- from: Account
+  to: InstalmentPlan
+  type: has_many
+  via: accountId
+- from: Transaction
+  belongs_to: Account
+  type: belongs_to
+  via: accountId
+- from: Transaction
+  to: InstalmentPlan
+  type: has_one
+  via: instalmentPlanId
+- from: ScheduledPayment
+  to: Payee
+  type: has_one
+  via: to.payeeId
+- from: ScheduledPayment
+  to: Account
+  type: belongs_to
+  via: from.accountId
+notes: >-
+  ids in this data holder are opaque ASCII tokens (no cross-holder-stable
+  prefixes); CDR requires accountId/transactionId/payeeId to be non-guessable
+  and unique within the data holder. Product ids are public and resolvable via
+  GET /banking/products/{productId}.

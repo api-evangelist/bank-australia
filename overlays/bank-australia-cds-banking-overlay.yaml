@@ -1,0 +1,35 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bank Australia CDR Banking API
+  version: 1.0.0
+extends: openapi/bank-australia-cds-banking-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: bank-australia
+    x-apievangelist-cdr-role: data-holder
+    x-apievangelist-contract-origin: >-
+      Shared DSB Consumer Data Standards Banking OpenAPI (v1.36.0), served by
+      Bank Australia as a registered CDR data holder — not a bank-proprietary
+      specification.
+- target: $.servers
+  update: {}
+  description: >-
+    The upstream contract ships an example MTLS server
+    (https://mtls.dh.example.com/cds-au/v1). Bank Australia's real hosts are the
+    public PRD base https://public.cdr.bankaust.com.au/cds-au/v1 and the
+    consumer-authorized resource base https://resource.cdr.bankaust.com.au/cds-au/v1.
+- target: $.paths['/banking/products'].get
+  update:
+    x-apievangelist-surface: public-prd
+    x-apievangelist-auth: none
+    x-apievangelist-required-headers: [x-v]
+- target: $.paths['/banking/products/{productId}'].get
+  update:
+    x-apievangelist-surface: public-prd
+    x-apievangelist-auth: none
+    x-apievangelist-required-headers: [x-v]
+- target: $.paths['/banking/accounts'].get
+  update:
+    x-apievangelist-surface: consumer-authorized
+    x-apievangelist-auth: cdr-oauth2-fapi-mtls
