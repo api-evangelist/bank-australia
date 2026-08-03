@@ -1,0 +1,26 @@
+{
+  "provider": "bank-australia",
+  "sources": [
+    "bank-australia-banking-account-balances-api-openapi.yml",
+    "bank-australia-banking-account-direct-debits-api-openapi.yml",
+    "bank-australia-banking-account-scheduled-payments-api-openapi.yml",
+    "bank-australia-banking-account-transactions-api-openapi.yml",
+    "bank-australia-banking-accounts-api-openapi.yml",
+    "bank-australia-banking-payees-api-openapi.yml",
+    "bank-australia-banking-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "bank-australia-banking-account-balances-api-openapi.yml",
+    "bank-australia-banking-account-direct-debits-api-openapi.yml",
+    "bank-australia-banking-account-scheduled-payments-api-openapi.yml",
+    "bank-australia-banking-account-transactions-api-openapi.yml",
+    "bank-australia-banking-accounts-api-openapi.yml",
+    "bank-australia-banking-payees-api-openapi.yml",
+    "bank-australia-banking-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
