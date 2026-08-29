@@ -221,6 +221,9 @@ apis:
   - type: APIReference
     url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
 common:
+- type: CapabilityMap
+  url: capabilities/bank-australia-capability-edges.yml
+  name: Bank Australia Business Capability Map
 - type: AgenticAccess
   url: agentic-access/bank-australia-agentic-access.yml
 - type: DomainSecurity
