@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/bank-australia/integrations
+- https://n8n.io/integrations/bank-australia/
+- https://composio.dev/toolkits/bank-australia
+- https://monid.ai/tools/bank-australia
+checked:
+- https://composio.dev/toolkits/bank-australia
+- https://monid.ai/tools/bank-australia
+- https://n8n.io/integrations/bank-australia/
+- https://zapier.com/apps/bank-australia/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
