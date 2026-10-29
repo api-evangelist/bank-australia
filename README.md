@@ -1,4 +1,4 @@
-# Bank Australia (bank-australia)
+# Bank Australia
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,61 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bank Australia is a customer-owned (mutual) bank headquartered in Collingwood, Victoria, tracing its origins to the 1957 CSIRO Co-operative Credit Society and formed through the merger of more than 70 credit unions and co-operatives (via mecu and bankmecu) before adopting the Bank Australia name in 2015. As an APRA-regulated authorised deposit-taking institution (ADI) and a certified B Corporation, it is owned by its customers rather than shareholders and is known for responsible, fossil-fuel-free lending. Under Australia's Consumer Data Right (CDR / Open Banking), Bank Australia operates as a data holder and exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body (DSB) Consumer Data Standards.
+Bank Australia is a customer-owned (mutual) bank headquartered in Collingwood, Victoria, tracing its origins to the 1957 CSIRO Co-operative Credit Society and formed through the merger of more than 70 credit unions and co-operatives (via mecu and bankmecu) before adopting the Bank Australia name in 2015. As an APRA-regulated authorised deposit-taking institution (ADI) and a certified B Corporation, it is owned by its customers rather than shareholders and is known for responsible, fossil-fuel-free lending. Under Australia's Consumer Data Right (CDR / Open Banking), Bank Australia operates as a data holder: it exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body (DSB) Consumer Data Standards, and offers accredited-recipient consumer data sharing to eligible customers through its app and internet banking.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bank-australia/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Data Right · Consumer Banking · Australia · Mutual Bank
 
-## Tags
+## Bank Australia on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Data Right
-- Consumer Banking
-- Australia
-- Mutual Bank
+Everything profiled for Bank Australia is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bank-australia/](https://apis.io/providers/bank-australia/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [Bank Australia Banking Account Balances API](https://apis.io/apis/bank-australia/bank-australia-banking-account-balances-api/) — Banking Account Balance endpoints
+- [Bank Australia Banking Account Direct Debits API](https://apis.io/apis/bank-australia/bank-australia-banking-account-direct-debits-api/) — Banking Account Direct Debit endpoints
+- [Bank Australia Banking Account Scheduled Payments API](https://apis.io/apis/bank-australia/bank-australia-banking-account-scheduled-payments-api/) — Banking Account Scheduled Payment endpoints
+- [Bank Australia Banking Account Transactions API](https://apis.io/apis/bank-australia/bank-australia-banking-account-transactions-api/) — Banking Account Transaction endpoints
+- [Bank Australia Banking Accounts API](https://apis.io/apis/bank-australia/bank-australia-banking-accounts-api/) — Banking Account endpoints
+- [Bank Australia Banking Payees API](https://apis.io/apis/bank-australia/bank-australia-banking-payees-api/) — Banking Payee endpoints
+- [Bank Australia Banking Products API](https://apis.io/apis/bank-australia/bank-australia-banking-products-api/) — Banking Product endpoints
 
-## APIs
+### Published properties
 
-### Bank Australia CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public, unauthenticated Product Reference Data (PRD) endpoints under the Consumer Data Right. Serves `GET /banking/products` and `GET /banking/products/{productId}` at the CDS public base, returning machine-readable product, fee, rate, and eligibility data for Bank Australia's deposit, credit card, and lending products. Requests require the mandatory CDS `x-v` version header. The contract is the shared DSB Consumer Data Standards Banking OpenAPI (OpenAPI 3.0.3), not a bank-proprietary specification.
+#### MCP servers (1)
 
-- **Human URL:** [https://www.bankaust.com.au/support/open-banking/developer/](https://www.bankaust.com.au/support/open-banking/developer/)
-- **Base URL:** `https://public.cdr.bankaust.com.au/cds-au/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [bank-australia-cdr-prd](https://apis.io/servers/bank-australia/bank-australia-cdr-prd/)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- Banking
-- Public
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.bankaust.com.au/support/open-banking/developer/)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products)
-- [OpenAPI](https://consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json) — shared DSB Consumer Data Standards Banking OpenAPI 3.0.3 (not bank-proprietary)
+- [Bank Australia Agentic Access](https://apis.io/agentic-access/bank-australia/bank-australia-agentic-access/)
 
-## Common Properties
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [CDR Banking Banking Account Balances API](https://apis.io/collections/bank-australia/open-bank-australia-banking-account-balances-api/)
+- [CDR Banking Banking Account Balances Banking Account Direct Debits API](https://apis.io/collections/bank-australia/open-bank-australia-banking-account-direct-debits-api/)
+- [CDR Banking Banking Account Balances Banking Account Scheduled Payments API](https://apis.io/collections/bank-australia/open-bank-australia-banking-account-scheduled-payments-api/)
+- [CDR Banking Banking Account Balances Banking Account Transactions API](https://apis.io/collections/bank-australia/open-bank-australia-banking-account-transactions-api/)
+- [CDR Banking Banking Account Balances Banking Accounts API](https://apis.io/collections/bank-australia/open-bank-australia-banking-accounts-api/)
+- [CDR Banking Banking Account Balances Banking Payees API](https://apis.io/collections/bank-australia/open-bank-australia-banking-payees-api/)
+- [CDR Banking Banking Account Balances Banking Products API](https://apis.io/collections/bank-australia/open-bank-australia-banking-products-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bank Australia Cds Banking Overlay](https://apis.io/overlays/bank-australia/bank-australia-cds-banking-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bank Australia Authentication](https://apis.io/security/bank-australia/bank-australia-authentication/)
+- [Bank Australia Domain Security](https://apis.io/security/bank-australia/bank-australia-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.bankaust.com.au/)
-- [Developer Portal](https://www.bankaust.com.au/support/open-banking/developer/)
 - [Documentation](https://www.bankaust.com.au/support/open-banking)
-- [LinkedIn](https://au.linkedin.com/company/bankaust)
-- [Blog](https://www.bankaust.com.au/blog)
-- [Privacy Policy](https://www.bankaust.com.au/support/website-security-and-privacy-statement)
-- [Terms of Service](https://www.bankaust.com.au/support/disclosures)
 - [Support](https://www.bankaust.com.au/support)
+- [Blog](https://www.bankaust.com.au/blog)
+- [Terms of service](https://www.bankaust.com.au/support/disclosures)
+- [Privacy policy](https://www.bankaust.com.au/support/website-security-and-privacy-statement)
+- [Status](https://www.bankaust.com.au/status)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 21.1 |
+
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.4** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bank-australia/](https://apis.io/providers/bank-australia/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bank Australia: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bank-australia/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
